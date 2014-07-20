@@ -1,136 +1,97 @@
 {
-    "name": "keeko/auth",
-    "type": "keeko-module",
-    "description": "Keeko auth module",
-    "license": "MIT",
-    "require": {
-        "php": ">=5.4",
-        "keeko/composer-installer": "*"
-    },
-    "require-dev": {
-        "composer/composer": "@dev",
-        "keeko/core": "dev-master",
-        "propel/propel": "@dev"
-    },
-    "keywords": [
-        "auth"
-    ],
-    "autoload": {
-        "psr-4": {
-            "keeko\\auth\\": "src"
-        }
-    },
-    "extra": {
-        "local": "../../",
-        "keeko": {
-            "module": {
-                "title": "Auth",
-                "class": "keeko\\auth\\AuthModule",
-                "slug": "auth",
-                "default-action": "auth-list",
-                "actions": {
-                    "login": {
-                        "class": "keeko\\auth\\action\\LoginAction",
-                        "title": "Login",
-                        "response": {
-                            "json": "keeko\\auth\\response\\LoginJsonResponse"
-                        }
-                    },
-                    "logout": {
-                        "class": "keeko\\auth\\action\\LogoutAction",
-                        "title": "Logout",
-                        "response": {
-                            "json": "keeko\\auth\\response\\LogoutJsonResponse"
-                        }
-                    },
-                    "auth-list": {
-                        "class": "keeko\\auth\\action\\AuthListAction",
-                        "title": "List all auths",
-                        "response": {
-                            "json": "keeko\\auth\\response\\AuthListJsonResponse"
-                        }
-                    },
-                    "auth-create": {
-                        "class": "keeko\\auth\\action\\AuthCreateAction",
-                        "title": "Creates an auth",
-                        "response": {
-                            "json": "keeko\\auth\\response\\AuthCreateJsonResponse"
-                        }
-                    },
-                    "auth-read": {
-                        "class": "keeko\\auth\\action\\AuthReadAction",
-                        "title": "Reads an auth",
-                        "response": {
-                            "json": "keeko\\auth\\response\\AuthReadJsonResponse"
-                        }
-                    },
-                    "auth-update": {
-                        "class": "keeko\\auth\\action\\AuthUpdateAction",
-                        "title": "Updates an auth",
-                        "response": {
-                            "json": "keeko\\auth\\response\\AuthUpdateJsonResponse"
-                        }
-                    },
-                    "auth-delete": {
-                        "class": "keeko\\auth\\action\\AuthDeleteAction",
-                        "title": "Deletes an auth",
-                        "response": {
-                            "json": "keeko\\auth\\response\\AuthDeleteJsonResponse"
-                        }
-                    }
-                },
-                "api": {
-                    "swaggerVersion": "1.2",
-                    "resourcePath": "/auth",
-                    "apis": [
-                        {
-                            "path": "/login",
-                            "operations": [
-                                {
-                                    "method": "GET",
-                                    "summary": "Login",
-                                    "nickname": "login",
-                                    "type": "LoginResponse",
-                                    "parameters": [
-                                        {
-                                            "name": "user",
-                                            "description": "The authenticating user",
-                                            "required": true,
-                                            "type": "string"
-                                        },
-                                        {
-                                            "name": "password",
-                                            "description": "The password for the user",
-                                            "required": true,
-                                            "type": "string"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "path": "/logout",
-                            "operations": [
-                                {
-                                    "method": "GET",
-                                    "summary": "Logout",
-                                    "nickname": "logout"
-                                }
-                            ]
-                        }
-                    ],
-                    "models": {
-                        "LoginResponse": {
-                            "id": "LoginResponse",
-                            "properties": {
-                                "token": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	"name" : "keeko/auth",
+	"type" : "keeko-module",
+	"description" : "Keeko auth module",
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=5.4",
+		"keeko/composer-installer" : "*"
+	},
+	"require-dev" : {
+		"composer/composer" : "@dev",
+		"keeko/core" : "dev-master",
+		"propel/propel" : "@dev"
+	},
+	"keywords" : [
+		"auth"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"keeko\\auth\\" : "src"
+		}
+	},
+	"extra" : {
+		"local" : "../../",
+		"keeko" : {
+			"module" : {
+				"title" : "Auth",
+				"class" : "keeko\\auth\\AuthModule",
+				"slug" : "auth",
+				"default-action" : "auth-list",
+				"actions" : {
+					"login" : {
+						"class" : "keeko\\auth\\action\\LoginAction",
+						"title" : "Login",
+						"response" : {
+							"json" : "keeko\\auth\\response\\LoginJsonResponse"
+						}
+					},
+					"logout" : {
+						"class" : "keeko\\auth\\action\\LogoutAction",
+						"title" : "Logout",
+						"response" : {
+							"json" : "keeko\\auth\\response\\LogoutJsonResponse"
+						}
+					}
+				},
+				"api" : {
+					"swaggerVersion" : "1.2",
+					"resourcePath" : "/auth",
+					"apis" : [{
+							"path" : "/login",
+							"operations" : [{
+									"method" : "POST",
+									"summary" : "Login",
+									"nickname" : "login",
+									"type" : "LoginResponse",
+									"parameters" : [{
+											"name" : "user",
+											"description" : "The authenticating user",
+											"required" : true,
+											"type" : "string",
+											"paramType": "body"
+										}, {
+											"name" : "password",
+											"description" : "The password for the user",
+											"required" : true,
+											"type" : "string",
+											"paramType": "body"
+										}
+									]
+								}
+							]
+						}, {
+							"path" : "/logout",
+							"operations" : [{
+									"method" : "GET",
+									"summary" : "Logout",
+									"nickname" : "logout"
+								}
+							]
+						}
+					],
+					"models" : {
+						"LoginResponse" : {
+							"id" : "LoginResponse",
+							"properties" : {
+								"token" : {
+									"type" : "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
