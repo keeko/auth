@@ -59,13 +59,13 @@
 											"description" : "The authenticating user",
 											"required" : true,
 											"type" : "string",
-											"paramType": "body"
+											"paramType" : "body"
 										}, {
 											"name" : "password",
 											"description" : "The password for the user",
 											"required" : true,
 											"type" : "string",
-											"paramType": "body"
+											"paramType" : "body"
 										}
 									]
 								}
@@ -75,7 +75,8 @@
 							"operations" : [{
 									"method" : "GET",
 									"summary" : "Logout",
-									"nickname" : "logout"
+									"nickname" : "logout",
+									"type": "LogoutResponse"
 								}
 							]
 						}
@@ -86,6 +87,14 @@
 							"properties" : {
 								"token" : {
 									"type" : "string"
+								}
+							}
+						},
+						"LogoutResponse" : {
+							"id" : "LogoutResponse",
+							"properties" : {
+								"success" : {
+									"type" : "boolean"
 								}
 							}
 						}
