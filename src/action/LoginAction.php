@@ -15,7 +15,7 @@ class LoginAction extends AbstractAction
 	protected function setDefaultParams(OptionsResolverInterface $resolver) {
 		$resolver->setRequired(['username', 'password']);
 	}
-	
+
     /**
      * Automatically generated method, will be overridden
      * 
