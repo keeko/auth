@@ -18,7 +18,7 @@ class LogoutAction extends AbstractAction
      */
     public function run(Request $request)
     {
-    	$authManager = $this->getModule()->getApplication()->getAuthManager();
+    	$authManager = $this->getServiceContainer()->getAuthManager();
     	$success = $authManager->logout();
     	$this->response->setData(['success' => $success]);
         return $this->response->run($request);

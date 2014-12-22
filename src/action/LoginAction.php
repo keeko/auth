@@ -24,7 +24,7 @@ class LoginAction extends AbstractAction
      */
     public function run(Request $request)
     {
-    	$authManager = $this->getModule()->getApplication()->getAuthManager();
+    	$authManager = $this->getServiceContainer()->getAuthManager();
     	if ($authManager->login($this->getParam('username'), $this->getParam('password'))) {
     		$auth = $authManager->getAuth();
     		$this->response->setData([

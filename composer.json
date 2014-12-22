@@ -32,6 +32,7 @@
 					"login" : {
 						"class" : "keeko\\auth\\action\\LoginAction",
 						"title" : "Login",
+						"acl": ["guest"],
 						"response" : {
 							"json" : "keeko\\auth\\response\\LoginJsonResponse"
 						}
@@ -39,6 +40,7 @@
 					"logout" : {
 						"class" : "keeko\\auth\\action\\LogoutAction",
 						"title" : "Logout",
+						"acl": ["user"],
 						"response" : {
 							"json" : "keeko\\auth\\response\\LogoutJsonResponse"
 						}
@@ -76,7 +78,7 @@
 									"method" : "GET",
 									"summary" : "Logout",
 									"nickname" : "logout",
-									"type": "LogoutResponse"
+									"type" : "LogoutResponse"
 								}
 							]
 						}
