@@ -1,17 +1,8 @@
 {
 	"name" : "keeko/auth",
-	"type" : "keeko-module",
 	"description" : "Keeko auth module",
+	"type" : "keeko-module",
 	"license" : "MIT",
-	"require" : {
-		"php" : ">=5.4",
-		"keeko/composer-installer" : "*"
-	},
-	"require-dev" : {
-		"composer/composer" : "@dev",
-		"keeko/core" : "dev-master",
-		"propel/propel" : "@dev"
-	},
 	"keywords" : [
 		"auth"
 	],
@@ -20,85 +11,45 @@
 			"keeko\\auth\\" : "src"
 		}
 	},
+	"require" : {
+		"php" : ">=5.4",
+		"keeko/composer-installer" : "*"
+	},
+	"require-dev" : {
+		"keeko/framework" : "dev-master",
+		"keeko/core" : "@dev",
+		"composer/composer" : "@dev",
+		"propel/propel" : "@dev",
+		"puli/repository" : "@beta",
+		"puli/composer-plugin" : "@beta",
+		"puli/twig-extension" : "@beta",
+		"puli/url-generator" : "@beta",
+		"puli/discovery" : "@beta"
+	},
 	"extra" : {
-		"local" : "../../",
 		"keeko" : {
 			"module" : {
 				"title" : "Auth",
 				"class" : "keeko\\auth\\AuthModule",
-				"slug" : "auth",
-				"default-action" : "auth-list",
 				"actions" : {
 					"login" : {
-						"class" : "keeko\\auth\\action\\LoginAction",
 						"title" : "Login",
-						"acl": ["guest"],
+						"class" : "keeko\\auth\\action\\LoginAction",
+						"acl" : [
+							"guest"
+						],
 						"response" : {
-							"json" : "keeko\\auth\\response\\LoginJsonResponse"
+							"json" : "keeko\\auth\\responder\\LoginJsonResponder"
 						}
 					},
 					"logout" : {
-						"class" : "keeko\\auth\\action\\LogoutAction",
 						"title" : "Logout",
-						"acl": ["user"],
+						"class" : "keeko\\auth\\action\\LogoutAction",
+						"acl" : [
+							"user"
+						],
 						"response" : {
-							"json" : "keeko\\auth\\response\\LogoutJsonResponse"
-						}
-					}
-				},
-				"api" : {
-					"swaggerVersion" : "1.2",
-					"resourcePath" : "/auth",
-					"apis" : [{
-							"path" : "/login",
-							"operations" : [{
-									"method" : "POST",
-									"summary" : "Login",
-									"nickname" : "login",
-									"type" : "LoginResponse",
-									"parameters" : [{
-											"name" : "user",
-											"description" : "The authenticating user",
-											"required" : true,
-											"type" : "string",
-											"paramType" : "body"
-										}, {
-											"name" : "password",
-											"description" : "The password for the user",
-											"required" : true,
-											"type" : "string",
-											"paramType" : "body"
-										}
-									]
-								}
-							]
-						}, {
-							"path" : "/logout",
-							"operations" : [{
-									"method" : "GET",
-									"summary" : "Logout",
-									"nickname" : "logout",
-									"type" : "LogoutResponse"
-								}
-							]
-						}
-					],
-					"models" : {
-						"LoginResponse" : {
-							"id" : "LoginResponse",
-							"properties" : {
-								"token" : {
-									"type" : "string"
-								}
-							}
-						},
-						"LogoutResponse" : {
-							"id" : "LogoutResponse",
-							"properties" : {
-								"success" : {
-									"type" : "boolean"
-								}
-							}
+							"json" : "keeko\\auth\\responder\\LogoutJsonResponder"
 						}
 					}
 				}

@@ -1,0 +1,96 @@
+{
+	"swagger": "2.0",
+	"paths": {
+		"/session": {
+			"post": {
+				"description": "Creates a session",
+				"operationId": "login",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"description": "Login credentials",
+						"schema": {
+							"$ref": "#/definitions/Login"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Login successful, session created.",
+						"schema": {
+							"$ref": "#/definitions/Session"
+						}
+					}
+				}
+			},
+			"delete": {
+				"description": "Deletes a session",
+				"operationId": "logout",
+				"responses": {
+					"204": {
+						"description": "Logout successful, session destroyed."
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Login": {
+			"properties": {
+				"data": {
+				    "type": "object",
+				    "properties": {
+					    "type": {
+							"type": "string"
+						},
+						"attributes": {
+						    "type": "object",
+						    "properties": {
+						        "login": {
+						            "type": "string"
+						        },
+						        "password": {
+						            "type": "string"
+						        }
+						    }
+						}
+					}
+				}
+			}
+		},
+		"Session": {
+			"properties": {
+			    "data": {
+					"type": "object",
+					"properties": {
+					    "type": {
+							"type": "string"
+						},
+						"id": {
+						    "type": "string"
+						},
+						"attributes": {
+						    "type": "object",
+						    "properties": {
+						        "token": {
+						            "type": "string"
+						        },
+								"user_id": {
+									"type": "int"
+								},
+								"created_at": {
+									"type": "string"
+								},
+								"updated_at": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

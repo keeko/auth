@@ -1,29 +1,29 @@
 <?php
 namespace keeko\auth;
 
-use keeko\core\module\AbstractModule;
+use keeko\framework\foundation\AbstractModule;
 
 /**
+ * Auth
+ * 
+ * @license MIT
  */
-class AuthModule extends AbstractModule
-{
-    /**
-     */
-    public function install()
-    {
-    }
+class AuthModule extends AbstractModule {
 
-    /**
-     */
-    public function uninstall()
-    {
-    }
+	/**
+	 */
+	public function install() {
+	}
 
-    /**
-     * @param mixed $from
-     * @param mixed $to
-     */
-    public function update($from, $to)
-    {
-    }
+	/**
+	 */
+	public function uninstall() {
+	}
+
+	/**
+	 * @param mixed $from
+	 * @param mixed $to
+	 */
+	public function update($from, $to) {
+	}
 }

@@ -1,39 +1,35 @@
 <?php
 namespace keeko\auth\action;
 
-use keeko\core\action\AbstractAction;
+use Flow\JSONPath\JSONPath;
+use keeko\auth\domain\SessionDomain;
+use keeko\framework\foundation\AbstractAction;
+use phootwork\json\Json;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use keeko\core\exceptions\InvalidCredentialsException;
 
 /**
  * Login
  */
-class LoginAction extends AbstractAction
-{
-	protected function setDefaultParams(OptionsResolverInterface $resolver) {
-		$resolver->setRequired(['username', 'password']);
-	}
+class LoginAction extends AbstractAction {
+	
+	/**
+	 * Automatically generated method, will be overridden
+	 *
+	 * @param Request $request      	
+	 * @return Response
+	 */
+	public function run(Request $request) {
+		$json = Json::decode($request->getContent());
+		$path = new JSONPath($json);
+		$login = $path->find('$.data.attributes.login')->first();
+		$password = $path->find('$.data.attributes.password')->first();
 
-    /**
-     * Automatically generated method, will be overridden
-     * 
-     * @param Request $request
-     * @return Response
-     */
-    public function run(Request $request)
-    {
-    	$authManager = $this->getServiceContainer()->getAuthManager();
-    	if ($authManager->login($this->getParam('username'), $this->getParam('password'))) {
-    		$auth = $authManager->getAuth();
-    		$this->response->setData([
-    			'token' => $auth->getToken() 
-    		]);
-    	} else {
-    		throw new InvalidCredentialsException();
-    	}
-    	
-        return $this->response->run($request);
-    }
+		$domain = new SessionDomain($this->getServiceContainer());
+		$payload = $domain->login(
+			$login, 
+			$password
+		);
+		return $this->responder->run($request, $payload);
+	}
 }
