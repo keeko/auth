@@ -1,55 +1,86 @@
 {
-	"name" : "keeko/auth",
-	"description" : "Keeko auth module",
-	"type" : "keeko-module",
-	"license" : "MIT",
-	"keywords" : [
+	"name": "keeko/auth",
+	"description": "Keeko auth module",
+	"type": "keeko-module",
+	"license": "MIT",
+	"keywords": [
 		"auth"
 	],
-	"autoload" : {
-		"psr-4" : {
-			"keeko\\auth\\" : "src"
+	"authors": [],
+	"autoload": {
+		"psr-4": {
+			"keeko\\auth\\": "src"
 		}
 	},
-	"require" : {
-		"php" : ">=5.4",
-		"keeko/composer-installer" : "*"
+	"require": {
+		"php": ">=5.4",
+		"keeko/composer-installer": "*"
 	},
-	"require-dev" : {
-		"keeko/framework" : "dev-master",
-		"keeko/core" : "@dev",
-		"composer/composer" : "@dev",
-		"propel/propel" : "@dev",
-		"puli/repository" : "@beta",
-		"puli/composer-plugin" : "@beta",
-		"puli/twig-extension" : "@beta",
-		"puli/url-generator" : "@beta",
-		"puli/discovery" : "@beta"
+	"require-dev": {
+		"keeko/framework": "dev-master",
+		"keeko/core": "@dev",
+		"composer/composer": "@dev",
+		"propel/propel": "@dev",
+		"puli/repository": "@beta",
+		"puli/composer-plugin": "@beta",
+		"puli/twig-extension": "@beta",
+		"puli/url-generator": "@beta",
+		"puli/discovery": "@beta"
 	},
-	"extra" : {
-		"keeko" : {
-			"module" : {
-				"title" : "Auth",
-				"class" : "keeko\\auth\\AuthModule",
-				"actions" : {
-					"login" : {
-						"title" : "Login",
-						"class" : "keeko\\auth\\action\\LoginAction",
-						"acl" : [
+	"extra": {
+		"keeko": {
+			"module": {
+				"title": "Keeko auth",
+				"class": "keeko\\auth\\AuthModule",
+				"actions": {
+					"login": {
+						"title": "Login",
+						"class": "keeko\\auth\\action\\LoginAction",
+						"acl": [
 							"guest"
 						],
-						"response" : {
-							"json" : "keeko\\auth\\responder\\LoginJsonResponder"
+						"response": {
+							"json": "keeko\\auth\\responder\\LoginJsonResponder"
 						}
 					},
-					"logout" : {
-						"title" : "Logout",
-						"class" : "keeko\\auth\\action\\LogoutAction",
-						"acl" : [
+					"logout": {
+						"title": "Logout",
+						"class": "keeko\\auth\\action\\LogoutAction",
+						"acl": [
 							"user"
 						],
-						"response" : {
-							"json" : "keeko\\auth\\responder\\LogoutJsonResponder"
+						"response": {
+							"json": "keeko\\auth\\responder\\LogoutJsonResponder"
+						}
+					},
+					"status": {
+						"title": "Session Status",
+						"class": "keeko\\auth\\action\\StatusAction",
+						"acl": [
+							"user"
+						],
+						"response": {
+							"json": "keeko\\auth\\responder\\StatusJsonResponder"
+						}
+					},
+					"profile-read": {
+						"title": "Users Profile",
+						"class": "keeko\\auth\\action\\ProfileReadAction",
+						"acl": [
+							"user"
+						],
+						"response": {
+							"json": "keeko\\auth\\responder\\ProfileReadJsonResponder"
+						}
+					},
+					"permissions": {
+						"title": "User Permissions",
+						"class": "keeko\\auth\\action\\PermissionsAction",
+						"acl": [
+							"user"
+						],
+						"response": {
+							"json": "keeko\\auth\\responder\\PermissionsJsonResponder"
 						}
 					}
 				}

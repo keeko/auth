@@ -1,0 +1,10 @@
+{
+	"models": {
+	    "session": {
+	        "reference": "session"
+	    },
+	    "profile": {
+	        "reference": "user"
+	    }
+	}
+}
