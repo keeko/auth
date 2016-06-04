@@ -15,13 +15,23 @@ class AuthSessionSerializer extends SessionSerializer {
 	public function getType($model) {
 		return 'auth/session';
 	}
-	
+
 	public function getRelationships() {
 		return [
 			'profile' => 'auth/profile'
 		];
 	}
-	
+
+	/**
+	 * @param mixed $model
+	 * @param array $fields
+	 */
+	public function getAttributes($model, array $fields = null) {
+		return array_merge(parent::getAttributes($model, $fields), [
+			'user-id' => $model->getUserId()
+ 		]);
+	}
+
 	/**
 	 * @param mixed $model
 	 * @return Relationship
